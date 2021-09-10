@@ -1,0 +1,17 @@
+* {
+  font-family:"Helvetica neue"
+}
+
+body {
+  background-color: #fff;
+  padding:50px;
+  color:#595959;
+}
+
+h1 {
+  color:#069;
+}
+
+a {
+  color: #39c;
+}
