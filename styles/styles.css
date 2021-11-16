@@ -1,21 +1,133 @@
 * {
-  font-family:"Helvetica neue","Arial";
+  font-family: "Helvetica neue", sans-serif;
 }
 
 body {
-  background-color: #fff;
-  padding:50px;
-  color:#595959;
+  padding: 50px;
+  background: #fff;
+  color: #595959;
 }
 
 h1 {
-  color:#069;
+  margin: 0 0 20px -15px;
 }
 
-a {
-  color: #39c;
+h1.first{
+  margin: 0 0 20px;
 }
 
 nav {
-    height: 32px;
+  margin-bottom: 20px;
+}
+
+div.justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+h2,h3,h4,h5,h6 {
+  margin: 0 0 20px -5px;
+  color: #494949;
+}
+
+h1 { font-size: 200%; }
+
+h2 { font-size: 150%; }
+
+h2.subsection {
+  margin-top: 1.5em;
+}
+
+pre {
+  font-family: monospace;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+em {
+  text-transform:uppercase;
+  font-weight: bold;
+}
+
+table {
+   margin-left: auto;
+   margin-right: auto;
+}
+
+div.box {
+  color: blue;
+  width:100%;
+  background: rgb(204,204,255);
+  padding: 0.5em;
+  border: none;
+}
+
+header {
+    width: 270px;
+    float: left;
+    position: fixed;
+  }
+
+section {
+    width: 500px;
+    float: right;
+    padding-bottom:50px;
+}
+
+footer {
+    width: 270px;
+    float: left;
+    position: fixed;
+    bottom: 50px;
+    -webkit-font-smoothing:subpixel-antialiased
+}
+
+.wrapper {
+  width: 860px;
+  margin:0 auto
+}
+
+a { text-decoration: none; } /* hyoerkinks without underline*/
+
+:link { color: #267CB9;; }  /* for unvisited links */
+
+:visited { color: #267CB9; } /* for visited links */
+
+a:hover { color: #069; } /* when mouse is over link */
+
+@media screen and (max-width: 960px) {
+    div.wrapper {
+        width: auto;
+        margin:0
+    }
+
+    header, section, footer {
+        float: none;
+        position: static;
+        width:auto
+    }
+
+    header {
+        padding-right:320px
+    }
+
+    section {
+        border: 1px solid #e5e5e5;
+        border-width: 1px 0;
+        padding: 20px 0;
+        margin:0 0 20px
+    }
+
+    header a small {
+        display:inline
+    }
+
+    header ul {
+        position: absolute;
+        right: 50px;
+        top:52px
+    }
 }
