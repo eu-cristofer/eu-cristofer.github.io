@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex, nofollow">
+		<title>França 2027 — Callian, Paris & Disney</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+		<link rel="stylesheet" href="styles/styles.css">
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<header>
+				<h1 class="first"><a href="https://eu-cristofer.github.io">Cristofer</a></h1>
+
+				<p class="justify">Plano de viagem do grupo: França, setembro de 2027.</p>
+			</header>
+
+			<section>
+				<h1>França 2027</h1>
+
+				<nav>
+					<a href="https://eu-cristofer.github.io">Início</a>
+					<span> / </span>
+					<a href="https://github.com/eu-cristofer" target="_blank" rel="noopener">GitHub</a>
+				</nav>
+
+				<h2 class="subsection">Resumo</h2>
+
+				<ul>
+					<li><strong>Quando:</strong> setembro de 2027 (datas exatas a definir).</li>
+					<li><strong>Onde:</strong> Callian (7 noites, casa de amigos — custo zero de hotel na
+						Provença), Paris (4 noites) e Disneyland Paris (2 noites).</li>
+					<li><strong>Chegada:</strong> todo mundo junto por Paris (CDG), ou voo multi-trecho
+						com volta por Nice (NCE).</li>
+					<li><strong>Ideia original:</strong> curtir Callian no início de setembro, quando Paris
+						ainda está mais cheia e cara, e terminar com Paris e Disney.</li>
+				</ul>
+
+				<h2 class="subsection">Decisões em aberto</h2>
+
+				<table class="plan-table">
+					<thead>
+						<tr><th>Item</th><th>Opções</th><th>Status</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Datas exatas</td>
+							<td>Ex.: 1 a 14 de setembro vs. 5 a 18 de setembro</td>
+							<td>A definir</td>
+						</tr>
+						<tr>
+							<td>Ordem do roteiro</td>
+							<td>Rota 1A, 1B ou 1C (veja o mapa e o comparativo abaixo)</td>
+							<td>A votar</td>
+						</tr>
+						<tr>
+							<td>Passagens (Rio → França)</td>
+							<td>Ida e volta por Paris (CDG) vs. multi-trecho (ida CDG / volta Nice NCE)</td>
+							<td>A cotar</td>
+						</tr>
+						<tr>
+							<td>Carro para Callian</td>
+							<td>Retirada em Saint-Raphaël–Valescure, Les Arcs–Draguignan ou Aeroporto de Nice;
+								1 carro grande (SUV/minivan) ou 2 compactos</td>
+							<td>A definir</td>
+						</tr>
+						<tr>
+							<td>Hotel em Paris (4 noites)</td>
+							<td>Le Marais, Quartier Latin, Saint-Germain ou perto de Gare de Lyon / Châtelet
+								(acesso direto ao RER A)</td>
+							<td>A pesquisar</td>
+						</tr>
+						<tr>
+							<td>Hotel na Disney (2 noites)</td>
+							<td>Hotel oficial da Disneyland Paris (com Extra Magic Time) ou Val d'Europe
+								(1 estação de distância no RER A)</td>
+							<td>A pesquisar</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h2 class="subsection">Mapa das rotas</h2>
+
+				<p class="route-buttons">
+					<button type="button" data-route="1A">Rota 1A</button>
+					<span> | </span>
+					<button type="button" data-route="1B">Rota 1B</button>
+					<span> | </span>
+					<button type="button" data-route="1C">Rota 1C</button>
+				</p>
+
+				<div id="map" class="map"></div>
+				<p class="map-note">Linhas retas entre as paradas, só para ilustrar a ordem; posições aproximadas.</p>
+
+				<h2 class="subsection">Comparativo das rotas</h2>
+
+				<div class="card">
+					<h3>Rota 1A — Callian primeiro, TGV direto do aeroporto</h3>
+					<p><strong>Sequência:</strong> pouso em Paris CDG → TGV direto do Terminal 2 para
+						Les Arcs–Draguignan (~5h20) → Callian (7 noites) → TGV para Paris Gare de Lyon
+						(4 noites) → RER A para a Disney (2 noites) → TGV de 11 min da Disney ao CDG.</p>
+					<p><strong>Passagem:</strong> ida e volta por Paris (CDG).</p>
+					<p><strong>Prós e atenção:</strong> mantém a ideia original de curtir Callian no início
+						de setembro sem voo separado para Nice; porém o Dia 1 soma o voo do Brasil com
+						~5h20 de trem.</p>
+				</div>
+
+				<div class="card">
+					<h3>Rota 1B — Paris → Callian → Disney → CDG (mais equilibrada)</h3>
+					<p><strong>Sequência:</strong> pouso em Paris CDG → Paris (4 noites) → TGV Gare de Lyon
+						para Saint-Raphaël ou Les Arcs (~4h40) → Callian (7 noites) → TGV direto do sul para
+						a estação da Disney (~5h03–5h23) → Disney (2 noites) → TGV de 11 min para o CDG.</p>
+					<p><strong>Passagem:</strong> ida e volta por Paris (CDG).</p>
+					<p><strong>Prós e atenção:</strong> evita 5h de trem logo após o voo do Brasil, intercala
+						os passeios urbanos e os parques com uma semana tranquila em Callian e usa o TGV
+						direto do sul até a Disney.</p>
+				</div>
+
+				<div class="card">
+					<h3>Rota 1C — Paris e Disney primeiro, descanso final em Callian</h3>
+					<p><strong>Sequência:</strong> pouso em Paris CDG → Paris (4 noites) → RER A para a
+						Disney (2 noites) → TGV da estação da Disney para Les Arcs–Draguignan (~5h03) →
+						Callian (7 noites) → 45 min de carro até o Aeroporto de Nice (NCE).</p>
+					<p><strong>Passagem:</strong> multi-trecho (ida Paris CDG / volta Nice NCE).</p>
+					<p><strong>Prós e atenção:</strong> concentra toda a caminhada pesada de Paris e da
+						Disney nos primeiros 6 dias e deixa a última semana inteira para descansar em
+						Callian.</p>
+				</div>
+
+				<p>Variação: chegando por Nice (NCE) e saindo por Paris CDG, é só dirigir 45 min até
+					Callian no Dia 1 e seguir Callian → Paris → Disney → CDG.</p>
+
+				<h2 class="subsection">Bloco A — 7 noites em Callian (Provença / Côte d'Azur)</h2>
+
+				<h3>Carro e estações próximas (~35–40 min de Callian)</h3>
+				<ul>
+					<li><strong>Saint-Raphaël–Valescure:</strong> lojas da Sixt, Avis e Europcar na própria estação.</li>
+					<li><strong>Les Arcs–Draguignan:</strong> TGVs diretos de Paris Gare de Lyon em ~4h38; locadoras Avis e Europcar.</li>
+					<li><strong>Aeroporto de Nice (NCE):</strong> a ~57 km (~45 min pela A8) de Callian.</li>
+				</ul>
+
+				<h3>Mercado e feiras</h3>
+				<ul>
+					<li><strong>Supermercados</strong> (5 min colina abaixo): Carrefour Market Callian e o
+						mercado de produtos frescos Fresh, em Montauroux.</li>
+					<li><strong>Feira de Fayence</strong> (5 km / 8 min): terças, quintas e sábados, 8h às
+						12h30, na Place de l'Église, com cerca de 90 barracas.</li>
+				</ul>
+
+				<h3>Passeios</h3>
+				<ol>
+					<li>Chegada, compras no mercado e caminhada pelas ruas medievais em espiral ao redor do castelo de Callian.</li>
+					<li>Vilas do Pays de Fayence: Tourrettes (vila-museu a céu aberto) e Fayence (mirante da
+						torre do relógio, feira e centro de voo a vela).</li>
+					<li>Lago de Saint-Cassien (15 min): pedalinho, caiaque e stand-up paddle na base
+						Saint Cassien Aventures.</li>
+					<li>Seillans (entre as vilas mais bonitas da França) e Mons (a vila mais alta da região,
+						com vista até o Mediterrâneo).</li>
+					<li>Grasse, a capital mundial do perfume (~35 min), ou trilha nas falésias vermelhas de
+						Gorges du Blavet + degustação de rosés do Var.</li>
+					<li>Litoral da Côte d'Azur (~40 min): Cannes, Antibes ou a estrada costeira do Estérel
+						em Saint-Raphaël.</li>
+					<li>Dia livre na casa (ou spa/golfe/jantar no resort Terre Blanche, em Tourrettes).</li>
+				</ol>
+
+				<h2 class="subsection">Bloco B — 4 noites em Paris</h2>
+				<ol>
+					<li>Chegada, check-in e passeio noturno às margens do Sena / Île Saint-Louis.</li>
+					<li>Louvre (reservar horário), Tulherias, Place de la Concorde, Champs-Élysées, pôr do sol
+						no Arco do Triunfo e passeio de barco no Sena perto da Torre Eiffel.</li>
+					<li>Île de la Cité (Notre-Dame e Sainte-Chapelle), Quartier Latin / Saint-Germain-des-Prés,
+						Museu d'Orsay e fim de tarde em Montmartre (Sacré-Cœur).</li>
+					<li>Le Marais (Place des Vosges, cafés, boutiques), Ópera Garnier e terraço da Galeries Lafayette.</li>
+				</ol>
+
+				<h2 class="subsection">Bloco C — 2 noites na Disneyland Paris</h2>
+				<p><strong>Paris ↔ Disney:</strong> RER A direto de Gare de Lyon, Châtelet–Les Halles, Nation
+					ou Auber até Marne-la-Vallée–Chessy, na porta dos parques; saídas a cada 15 min, ~35–45 min.</p>
+				<ol>
+					<li><strong>Disneyland Park:</strong> Castelo da Bela Adormecida, Big Thunder Mountain,
+						Phantom Manor, Pirates of the Caribbean, Star Wars Hyperspace Mountain, paradas e o
+						show noturno de drones e fogos.</li>
+					<li><strong>Walt Disney Studios Park / Disney Adventure World:</strong> Avengers Campus,
+						Ratatouille: The Adventure, Crush's Coaster, Tower of Terror e compras no Disney Village.</li>
+				</ol>
+				<p><strong>Disney → aeroporto:</strong> TGV direto de Marne-la-Vallée–Chessy para Paris CDG
+					(Terminal 2) em 11 min, cerca de 21 trens por dia, a partir de ~€17 comprando com
+					antecedência na SNCF Connect.</p>
+			</section>
+
+			<footer>
+				<hr>
+				<p>Cristofer Costa</p>
+				<a href="mailto:cristofercosta@yahoo.com.br">cristofercosta@yahoo.com.br</a>
+			</footer>
+		</div>
+
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+		<script>
+			// Approximate positions of each stop (station / airport / village centre).
+			var stops = {
+				cdg:     { pos: [49.0040, 2.5710], name: "Aeroporto Paris CDG (Terminal 2)" },
+				paris:   { pos: [48.8443, 2.3744], name: "Paris — Gare de Lyon" },
+				disney:  { pos: [48.8698, 2.7826], name: "Disneyland Paris — Marne-la-Vallée–Chessy" },
+				arcs:    { pos: [43.4553, 6.4772], name: "Estação Les Arcs–Draguignan" },
+				raphael: { pos: [43.4231, 6.7684], name: "Estação Saint-Raphaël–Valescure" },
+				callian: { pos: [43.6229, 6.7539], name: "Callian (7 noites)" },
+				nce:     { pos: [43.6584, 7.2159], name: "Aeroporto de Nice (NCE)" }
+			};
+
+			// Order of stops for each route option; edit here to change the map.
+			var routes = {
+				"1A": ["cdg", "arcs", "callian", "arcs", "paris", "disney", "cdg"],
+				"1B": ["cdg", "paris", "arcs", "callian", "arcs", "disney", "cdg"],
+				"1C": ["cdg", "paris", "disney", "arcs", "callian", "nce"]
+			};
+
+			var map = L.map("map");
+			L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+				maxZoom: 18,
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+
+			Object.keys(stops).forEach(function (key) {
+				L.marker(stops[key].pos).addTo(map).bindPopup(stops[key].name);
+			});
+
+			var line = null;
+			function showRoute(id) {
+				if (!routes[id]) id = "1B";
+				var path = routes[id].map(function (key) { return stops[key].pos; });
+				if (line) map.removeLayer(line);
+				line = L.polyline(path, { color: "#0000FF", opacity: 0.8, weight: 3 }).addTo(map);
+				map.fitBounds(line.getBounds(), { padding: [30, 30] });
+				document.querySelectorAll(".route-buttons button").forEach(function (btn) {
+					btn.classList.toggle("active", btn.getAttribute("data-route") === id);
+				});
+				document.body.setAttribute("data-route", id);
+			}
+
+			document.querySelectorAll(".route-buttons button").forEach(function (btn) {
+				btn.addEventListener("click", function () {
+					var id = btn.getAttribute("data-route");
+					history.replaceState(null, "", "#" + id);
+					showRoute(id);
+				});
+			});
+
+			showRoute(location.hash.slice(1));
+		</script>
+	</body>
+</html>
