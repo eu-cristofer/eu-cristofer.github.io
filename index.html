@@ -5,10 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Cristofer Costa</title>
 		<meta name="description"
-			content="Cristofer Costa — engineer working on turbomachinery, performance and vibration, with Python and AI-assisted development.">
+			content="Cristofer Costa — engineer in Rio de Janeiro working on centrifugal pumps, performance, vibration and Python.">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="styles/styles.css">
 		<script>
 			// Pick the language before first paint: saved choice, else browser language.
@@ -24,86 +24,107 @@
 	</head>
 
 	<body>
-
 		<div class="wrapper">
+			<p class="lang-toggle">
+				<button type="button" data-lang="en">EN</button> |
+				<button type="button" data-lang="pt">PT</button>
+			</p>
+
 			<header>
-				<h1 class="first"><a href="https://eu-cristofer.github.io">Cristofer</a></h1>
-
-				<p class="justify">
-					<span lang="en">Engineer in Rio de Janeiro. Turbomachinery, performance, vibration — and the code that helps with them.</span>
-					<span lang="pt">Engenheiro no Rio de Janeiro. Turbomáquinas, desempenho, vibração — e o código que ajuda nisso.</span>
-				</p>
-
-				<p class="lang-toggle">
-					<button type="button" data-lang="en">EN</button>
-					<span> | </span>
-					<button type="button" data-lang="pt">PT</button>
+				<h1>Cristofer Costa</h1>
+				<p class="intro">
+					<span lang="en">Engineer in Rio de Janeiro. I test centrifugal pumps, chase vibration,
+						and write Python so the numbers check themselves.</span>
+					<span lang="pt">Engenheiro no Rio de Janeiro. Testo bombas centrífugas, caço vibração
+						e escrevo Python para que os números se confiram sozinhos.</span>
 				</p>
 			</header>
 
-			<section>
-				<h1>
-					<span lang="en">Welcome</span>
-					<span lang="pt">Bem-vindo</span>
-				</h1>
+			<figure class="curve">
+				<svg viewBox="0 0 660 290" role="img" aria-labelledby="curve-title">
+					<title id="curve-title">Centrifugal pump performance curve: head falls and efficiency peaks at the best efficiency point (BEP) as flow increases.</title>
+					<defs>
+						<pattern id="mm" x="56" y="24" width="37.333" height="37.333" patternUnits="userSpaceOnUse">
+							<path class="grid-minor" d="M7.467 0V37.333M14.933 0V37.333M22.4 0V37.333M29.867 0V37.333M0 7.467H37.333M0 14.933H37.333M0 22.4H37.333M0 29.867H37.333"/>
+							<path class="grid-major" d="M0 0V37.333M0 0H37.333"/>
+						</pattern>
+					</defs>
 
-				<nav>
-					<a href="#projects">
-						<span lang="en">Projects</span>
-						<span lang="pt">Projetos</span>
-					</a>
-					<span> / </span>
-					<a href="https://github.com/eu-cristofer" target="_blank" rel="noopener">GitHub</a>
-					<span> / </span>
-					<a href="mailto:cristofercosta@yahoo.com.br">Email</a>
-				</nav>
+					<!-- millimetre paper -->
+					<rect x="56" y="24" width="560" height="224" fill="url(#mm)"/>
+					<path class="grid-major" d="M616 24V248M56 248H616"/>
 
-				<h2 class="subsection">
-					<span lang="en">About</span>
-					<span lang="pt">Sobre</span>
-				</h2>
+					<!-- axes and ticks -->
+					<path class="axis" d="M56 24V248H616V24"/>
+					<g class="tick" text-anchor="middle">
+						<text x="56" y="266">0</text>
+						<text x="242.7" y="266">40</text>
+						<text x="429.3" y="266">80</text>
+						<text x="616" y="266">120</text>
+					</g>
+					<g class="tick" text-anchor="end">
+						<text x="50" y="252">0</text>
+						<text x="50" y="177.3">40</text>
+						<text x="50" y="102.7">80</text>
+						<text x="50" y="28">120</text>
+					</g>
+					<g class="tick" text-anchor="start">
+						<text x="622" y="252">0</text>
+						<text x="622" y="140">50</text>
+						<text x="622" y="28">100</text>
+					</g>
+					<text class="axis-label" x="336" y="286" text-anchor="middle">Q (m³/h)</text>
+					<text class="axis-label" x="14" y="136" text-anchor="middle" transform="rotate(-90 14 136)">H (m)</text>
+					<text class="axis-label" x="650" y="136" text-anchor="middle" transform="rotate(90 650 136)">η (%)</text>
 
-				<p>
-					<span lang="en">I work with centrifugal pumps and rotating machinery: performance testing,
-						vibration and source inspection. I write Python to make that work faster and more
-						reliable, and lately I've been building with AI-assisted development tools.</span>
-					<span lang="pt">Trabalho com bombas centrífugas e máquinas rotativas: testes de desempenho,
-						vibração e inspeção de fabricação. Escrevo Python para tornar esse trabalho mais rápido
-						e confiável e, ultimamente, tenho desenvolvido com ferramentas de IA.</span>
-				</p>
+					<!-- head curve H(Q) -->
+					<path class="head" pathLength="1" d="M56.0,61.3 L67.7,61.4 L79.3,61.5 L91.0,61.8 L102.7,62.2 L114.3,62.6 L126.0,63.2 L137.7,63.9 L149.3,64.7 L161.0,65.6 L172.7,66.6 L184.3,67.7 L196.0,68.9 L207.7,70.2 L219.3,71.6 L231.0,73.1 L242.7,74.8 L254.3,76.5 L266.0,78.3 L277.7,80.3 L289.3,82.3 L301.0,84.5 L312.7,86.7 L324.3,89.1 L336.0,91.6 L347.7,94.1 L359.3,96.8 L371.0,99.6 L382.7,102.5 L394.3,105.5 L406.0,108.6 L417.7,111.8 L429.3,115.1 L441.0,118.5 L452.7,122.0 L464.3,125.6 L476.0,129.4 L487.7,133.2 L499.3,137.1 L511.0,141.2 L522.7,145.3 L534.3,149.6 L546.0,153.9 L557.7,158.4 L569.3,163.0 L581.0,167.6 L592.7,172.4 L604.3,177.3 L616.0,182.3"/>
+					<!-- efficiency curve η(Q) -->
+					<path class="efficiency" pathLength="1" d="M56.0,248.0 L67.7,234.6 L79.3,221.8 L91.0,209.4 L102.7,197.5 L114.3,186.1 L126.0,175.1 L137.7,164.7 L149.3,154.7 L161.0,145.3 L172.7,136.3 L184.3,127.8 L196.0,119.8 L207.7,112.2 L219.3,105.2 L231.0,98.6 L242.7,92.6 L254.3,87.0 L266.0,81.9 L277.7,77.3 L289.3,73.1 L301.0,69.5 L312.7,66.3 L324.3,63.7 L336.0,61.5 L347.7,59.8 L359.3,58.6 L371.0,57.8 L382.7,57.6 L394.3,57.8 L406.0,58.6 L417.7,59.8 L429.3,61.5 L441.0,63.7 L452.7,66.3 L464.3,69.5 L476.0,73.1 L487.7,77.3 L499.3,81.9 L511.0,87.0 L522.7,92.6 L534.3,98.6 L546.0,105.2 L557.7,112.2 L569.3,119.8 L581.0,127.8 L592.7,136.3 L604.3,145.3 L616.0,154.7"/>
 
-				<h2 class="subsection">
-					<span lang="en">Fields of interest</span>
-					<span lang="pt">Áreas de interesse</span>
-				</h2>
+					<text class="head-label" x="70" y="52"><tspan lang="en">head</tspan><tspan lang="pt">altura</tspan></text>
+					<text class="efficiency-label" x="505" y="74"><tspan lang="en">efficiency</tspan><tspan lang="pt">eficiência</tspan></text>
 
-				<ul>
-					<li><span lang="en">Turbomachinery</span><span lang="pt">Turbomáquinas</span></li>
-					<li><span lang="en">Performance</span><span lang="pt">Desempenho</span></li>
-					<li><span lang="en">Vibration</span><span lang="pt">Vibração</span></li>
-					<li><span lang="en">Source inspection</span><span lang="pt">Inspeção de fabricação</span></li>
-					<li><span lang="en">Python programming</span><span lang="pt">Programação em Python</span></li>
-				</ul>
+					<!-- best efficiency point -->
+					<g class="bep">
+						<path class="bep-line" d="M382.7 248V57.6"/>
+						<circle class="bep-dot" cx="382.7" cy="102.5" r="4.5"/>
+						<circle class="bep-dot" cx="382.7" cy="57.6" r="4.5"/>
+						<text class="bep-label" x="390" y="44">BEP</text>
+					</g>
+				</svg>
+				<figcaption>
+					<span lang="en">A centrifugal pump curve: head (blue) and efficiency (red) against flow.
+						Most of my work is making sure a pump really runs near its best efficiency point.</span>
+					<span lang="pt">Curva de uma bomba centrífuga: altura (azul) e eficiência (vermelho) em
+						função da vazão. Boa parte do meu trabalho é garantir que a bomba opere de fato perto
+						do seu ponto de melhor eficiência.</span>
+				</figcaption>
+			</figure>
 
-				<h2 class="subsection" id="projects">
-					<span lang="en">Projects</span>
-					<span lang="pt">Projetos</span>
-				</h2>
+			<h2><span lang="en">About</span><span lang="pt">Sobre</span></h2>
+			<p>
+				<span lang="en">I work with turbomachinery, mostly centrifugal pumps: performance tests,
+					mechanical running tests, vibration and source inspection. Python is how I turn test
+					data into answers, and lately I've been building with AI-assisted development tools.</span>
+				<span lang="pt">Trabalho com turbomáquinas, principalmente bombas centrífugas: testes de
+					desempenho, testes mecânicos, vibração e inspeção de fabricação. Python é como transformo
+					dados de teste em respostas e, ultimamente, tenho desenvolvido com ferramentas de IA.</span>
+			</p>
 
-				<!-- One .card per project: copy this block to add another. -->
-				<div class="card">
-					<h3><a href="https://github.com/eu-cristofer/claude-config" target="_blank" rel="noopener">claude-config</a></h3>
-					<p>
-						<span lang="en">My Claude Code setup — skills, commands and agents — versioned and public.</span>
-						<span lang="pt">Minha configuração do Claude Code — skills, comandos e agentes — versionada e pública.</span>
-					</p>
-				</div>
-			</section>
+			<h2 id="projects"><span lang="en">Projects</span><span lang="pt">Projetos</span></h2>
+			<!-- One dt/dd pair per project: copy it to add another. -->
+			<dl class="projects">
+				<dt><a href="https://github.com/eu-cristofer/claude-config">claude-config</a></dt>
+				<dd>
+					<span lang="en">My Claude Code setup: skills, commands and agents, versioned and public.</span>
+					<span lang="pt">Minha configuração do Claude Code: skills, comandos e agentes, versionada e pública.</span>
+				</dd>
+			</dl>
 
 			<footer>
-				<hr>
-				<p>Cristofer Costa</p>
-				<a href="mailto:cristofercosta@yahoo.com.br">cristofercosta@yahoo.com.br</a>
+				<p><a href="mailto:cristofercosta@yahoo.com.br">cristofercosta@yahoo.com.br</a></p>
+				<p><a href="https://github.com/eu-cristofer">github.com/eu-cristofer</a></p>
 			</footer>
 		</div>
 
