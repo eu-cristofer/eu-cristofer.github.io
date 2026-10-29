@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 	<head>
-		<title>Welcome!</title>
-		<metadata charset="UTF-8">
-		<metadata name="description"
-			content="Webpage with some codes developed by Cristofer Costa">
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cristofer Costa</title>
+		<meta name="description"
+			content="Cristofer Costa — engineer working on turbomachinery, performance and vibration, with Python and AI-assisted development.">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="styles/styles.css">
+		<script>
+			// Pick the language before first paint: saved choice, else browser language.
+			(function () {
+				var lang = null;
+				try { lang = localStorage.getItem("lang"); } catch (e) {}
+				if (lang !== "en" && lang !== "pt") {
+					lang = /^pt/i.test(navigator.language || "") ? "pt" : "en";
+				}
+				document.documentElement.lang = lang;
+			})();
+		</script>
 	</head>
 
 	<body>
@@ -18,36 +29,75 @@
 			<header>
 				<h1 class="first"><a href="https://eu-cristofer.github.io">Cristofer</a></h1>
 
-				<p class="justify">Hi, this is my personal page.</p>
+				<p class="justify">
+					<span lang="en">Engineer in Rio de Janeiro. Turbomachinery, performance, vibration — and the code that helps with them.</span>
+					<span lang="pt">Engenheiro no Rio de Janeiro. Turbomáquinas, desempenho, vibração — e o código que ajuda nisso.</span>
+				</p>
 
+				<p class="lang-toggle">
+					<button type="button" data-lang="en">EN</button>
+					<span> | </span>
+					<button type="button" data-lang="pt">PT</button>
+				</p>
 			</header>
 
 			<section>
-				<h1>Welcome</h1>
+				<h1>
+					<span lang="en">Welcome</span>
+					<span lang="pt">Bem-vindo</span>
+				</h1>
 
 				<nav>
-					<a href="https://eu-cristofer.github.io/vba-pump-performance"
-						target="_blank">VBA Pump Performance</a>
-
+					<a href="#projects">
+						<span lang="en">Projects</span>
+						<span lang="pt">Projetos</span>
+					</a>
 					<span> / </span>
-
-					<a href="https://github.com/eu-cristofer"
-						target="_blank">my GitHub</a>
+					<a href="https://github.com/eu-cristofer" target="_blank" rel="noopener">GitHub</a>
+					<span> / </span>
+					<a href="mailto:cristofercosta@yahoo.com.br">Email</a>
 				</nav>
 
-				<p>In the links above you can find details of the projects I'm engaged with.</p>
+				<h2 class="subsection">
+					<span lang="en">About</span>
+					<span lang="pt">Sobre</span>
+				</h2>
 
-				<h2 class="subsection">Research goals</h2>
+				<p>
+					<span lang="en">I work with centrifugal pumps and rotating machinery: performance testing,
+						vibration and source inspection. I write Python to make that work faster and more
+						reliable, and lately I've been building with AI-assisted development tools.</span>
+					<span lang="pt">Trabalho com bombas centrífugas e máquinas rotativas: testes de desempenho,
+						vibração e inspeção de fabricação. Escrevo Python para tornar esse trabalho mais rápido
+						e confiável e, ultimamente, tenho desenvolvido com ferramentas de IA.</span>
+				</p>
 
-				<p>Fields of interest:</p>
+				<h2 class="subsection">
+					<span lang="en">Fields of interest</span>
+					<span lang="pt">Áreas de interesse</span>
+				</h2>
 
 				<ul>
-				  <li>Turbomachinery</li>
-				  <li>Performance</li>
-				  <li>Vibration</li>
-				  <li>Source inspection</li>
-				  <li>Python programming</li>
+					<li><span lang="en">Turbomachinery</span><span lang="pt">Turbomáquinas</span></li>
+					<li><span lang="en">Performance</span><span lang="pt">Desempenho</span></li>
+					<li><span lang="en">Vibration</span><span lang="pt">Vibração</span></li>
+					<li><span lang="en">Source inspection</span><span lang="pt">Inspeção de fabricação</span></li>
+					<li><span lang="en">Python programming</span><span lang="pt">Programação em Python</span></li>
 				</ul>
+
+				<h2 class="subsection" id="projects">
+					<span lang="en">Projects</span>
+					<span lang="pt">Projetos</span>
+				</h2>
+
+				<!-- One .card per project: copy this block to add another. -->
+				<div class="card">
+					<h3><a href="https://github.com/eu-cristofer/claude-config" target="_blank" rel="noopener">claude-config</a></h3>
+					<p>
+						<span lang="en">My Claude Code setup — skills, commands and agents — versioned and public.</span>
+						<span lang="pt">Minha configuração do Claude Code — skills, comandos e agentes — versionada e pública.</span>
+					</p>
+				</div>
 			</section>
 
 			<footer>
@@ -56,5 +106,15 @@
 				<a href="mailto:cristofercosta@yahoo.com.br">cristofercosta@yahoo.com.br</a>
 			</footer>
 		</div>
+
+		<script>
+			document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+				btn.addEventListener("click", function () {
+					var lang = btn.getAttribute("data-lang");
+					document.documentElement.lang = lang;
+					try { localStorage.setItem("lang", lang); } catch (e) {}
+				});
+			});
+		</script>
 	</body>
 </html>
