@@ -164,6 +164,9 @@
 					<li>Dia livre na casa (ou spa/golfe/jantar no resort Terre Blanche, em Tourrettes).</li>
 				</ol>
 
+				<div id="map-callian" class="map"></div>
+				<p class="map-note">Números = dia do passeio. Pinos sem número: estações, aeroporto e mercados.</p>
+
 				<h2 class="subsection">Bloco B — 4 noites em Paris</h2>
 				<ol>
 					<li>Chegada, check-in e passeio noturno às margens do Sena / Île Saint-Louis.</li>
@@ -173,6 +176,9 @@
 						Museu d'Orsay e fim de tarde em Montmartre (Sacré-Cœur).</li>
 					<li>Le Marais (Place des Vosges, cafés, boutiques), Ópera Garnier e terraço da Galeries Lafayette.</li>
 				</ol>
+
+				<div id="map-paris" class="map"></div>
+				<p class="map-note">Números = dia em Paris; cada dia tem sua cor.</p>
 
 				<h2 class="subsection">Bloco C — 2 noites na Disneyland Paris</h2>
 				<p><strong>Paris ↔ Disney:</strong> RER A direto de Gare de Lyon, Châtelet–Les Halles, Nation
@@ -184,6 +190,9 @@
 					<li><strong>Walt Disney Studios Park / Disney Adventure World:</strong> Avengers Campus,
 						Ratatouille: The Adventure, Crush's Coaster, Tower of Terror e compras no Disney Village.</li>
 				</ol>
+
+				<div id="map-disney" class="map map-small"></div>
+				<p class="map-note">Números = dia na Disney. A estação Marne-la-Vallée–Chessy (RER A e TGV) fica entre os parques.</p>
 				<p><strong>Disney → aeroporto:</strong> TGV direto de Marne-la-Vallée–Chessy para Paris CDG
 					(Terminal 2) em 11 min, cerca de 21 trens por dia, a partir de ~€17 comprando com
 					antecedência na SNCF Connect.</p>
@@ -217,11 +226,16 @@
 				"1C": ["cdg", "paris", "disney", "arcs", "callian", "nce"]
 			};
 
-			var map = L.map("map");
-			L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-				maxZoom: 18,
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			}).addTo(map);
+			function baseMap(id) {
+				var m = L.map(id, { scrollWheelZoom: false });
+				L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					maxZoom: 18,
+					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(m);
+				return m;
+			}
+
+			var map = baseMap("map");
 
 			Object.keys(stops).forEach(function (key) {
 				L.marker(stops[key].pos).addTo(map).bindPopup(stops[key].name);
@@ -249,6 +263,75 @@
 			});
 
 			showRoute(location.hash.slice(1));
+
+			// Detail maps: each place is [lat, lng, name, day] — day null = logistics pin.
+			// Positions are approximate (landmark / village centre).
+			var dayColors = ["#1d5c8c", "#b03a48", "#2e7d4f", "#9a6a12", "#6b4c9a", "#00838f", "#5d6b75"];
+
+			function detailMap(id, places) {
+				var m = baseMap(id);
+				var bounds = [];
+				places.forEach(function (p) {
+					var day = p[3];
+					var icon = L.divIcon({
+						className: "",
+						html: '<span class="pin' + (day ? '" style="background:' + dayColors[(day - 1) % dayColors.length] + '">' + day : ' pin-logistics">') + "</span>",
+						iconSize: [24, 24],
+						iconAnchor: [12, 12]
+					});
+					L.marker([p[0], p[1]], { icon: icon, title: p[2] }).addTo(m)
+						.bindPopup(day ? "Dia " + day + ": " + p[2] : p[2]);
+					bounds.push([p[0], p[1]]);
+				});
+				m.fitBounds(bounds, { padding: [24, 24] });
+			}
+
+			detailMap("map-callian", [
+				[43.6229, 6.7539, "Callian — casa, castelo e ruas medievais", 1],
+				[43.6181, 6.7650, "Montauroux — mercado Fresh", null],
+				[43.6178, 6.7047, "Tourrettes", 2],
+				[43.6236, 6.6950, "Fayence — torre do relógio e feira (ter/qui/sáb)", 2],
+				[43.5760, 6.7850, "Lago de Saint-Cassien", 3],
+				[43.6363, 6.6436, "Seillans", 4],
+				[43.6906, 6.7158, "Mons", 4],
+				[43.6589, 6.9236, "Grasse — perfumarias", 5],
+				[43.5150, 6.6870, "Gorges du Blavet (alternativa)", 5],
+				[43.5528, 7.0174, "Cannes", 6],
+				[43.5804, 7.1251, "Antibes", 6],
+				[43.4250, 6.7800, "Saint-Raphaël — estrada costeira do Estérel", 6],
+				[43.6005, 6.7130, "Terre Blanche (Tourrettes)", 7],
+				[43.4231, 6.7684, "Estação Saint-Raphaël–Valescure (Sixt, Avis, Europcar)", null],
+				[43.4553, 6.4772, "Estação Les Arcs–Draguignan (Avis, Europcar)", null],
+				[43.6584, 7.2159, "Aeroporto de Nice (NCE)", null]
+			]);
+
+			detailMap("map-paris", [
+				[48.8519, 2.3568, "Île Saint-Louis e margens do Sena", 1],
+				[48.8606, 2.3376, "Museu do Louvre", 2],
+				[48.8635, 2.3275, "Jardim das Tulherias", 2],
+				[48.8656, 2.3212, "Place de la Concorde", 2],
+				[48.8698, 2.3078, "Champs-Élysées", 2],
+				[48.8738, 2.2950, "Arco do Triunfo", 2],
+				[48.8584, 2.2945, "Torre Eiffel / barco no Sena", 2],
+				[48.8530, 2.3499, "Notre-Dame", 3],
+				[48.8554, 2.3450, "Sainte-Chapelle", 3],
+				[48.8494, 2.3470, "Quartier Latin", 3],
+				[48.8540, 2.3339, "Saint-Germain-des-Prés", 3],
+				[48.8600, 2.3266, "Museu d'Orsay", 3],
+				[48.8867, 2.3431, "Montmartre — Sacré-Cœur", 3],
+				[48.8556, 2.3655, "Le Marais — Place des Vosges", 4],
+				[48.8720, 2.3316, "Ópera Garnier", 4],
+				[48.8738, 2.3320, "Galeries Lafayette (terraço)", 4],
+				[48.8443, 2.3744, "Gare de Lyon (TGV e RER A)", null]
+			]);
+
+			detailMap("map-disney", [
+				[48.8722, 2.7758, "Disneyland Park", 1],
+				[48.8681, 2.7798, "Walt Disney Studios / Disney Adventure World", 2],
+				[48.8705, 2.7840, "Disney Village", 2],
+				[48.8698, 2.7826, "Estação Marne-la-Vallée–Chessy (RER A e TGV para o CDG)", null],
+				[48.8546, 2.7838, "Val d'Europe (RER A, opção de hotel)", null]
+			]);
 		</script>
 	</body>
 </html>

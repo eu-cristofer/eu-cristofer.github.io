@@ -265,7 +265,29 @@ footer p { margin: 0 0 0.25rem; }
   border: 1px solid var(--rule);
 }
 
+.map-small { height: 320px; }
+
 .map-note { font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Numbered day pins on the detail maps */
+.pin {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font: 700 12px/20px "Archivo", Arial, sans-serif;
+  text-align: center;
+}
+
+.pin-logistics {
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+  background: #22303a;
+}
 
 .route-buttons { margin-bottom: 0.75rem; }
 
