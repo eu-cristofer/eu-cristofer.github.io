@@ -1,165 +1,319 @@
-* {
-  font-family: "Helvetica neue", 'Open Sans', sans-serif;
+/* Personal page: a pump engineer's notebook.
+   Plain paper, one plotted performance curve on green millimetre paper, pen-blue / pen-red ink. */
+
+:root {
+  --paper: #fcfcfa;
+  --ink: #22303a;
+  --ink-soft: #55636c;
+  --rule: #d9e0dc;
+  --grid: #dce8df;
+  --grid-major: #c3d6c8;
+  --pen-blue: #1d5c8c;
+  --pen-red: #b03a48;
+  --measure: 44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161c20;
+    --ink: #e4e9e6;
+    --ink-soft: #a3b0b6;
+    --rule: #2e3a40;
+    --grid: #1f2b27;
+    --grid-major: #2c3d36;
+    --pen-blue: #7fb4dd;
+    --pen-red: #e48a95;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: 106.25%;               /* 17px base */
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  padding: 50px;
-  background: #fff;
-  color: #595959;
-}
-
-h1 {
-  margin: 0 0 20px;
-}
-
-h1.first{
-  margin: 0 0 20px;
-}
-
-nav {
-  margin-bottom: 20px;
-}
-
-div.justify {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-h2,h3,h4,h5,h6 {
-  margin: 0 0 20px;
-  color: #494949;
-}
-
-h1 { font-size: 200%; }
-
-h2 { font-size: 150%; }
-
-h2.subsection {
-  margin-top: 1.5em;
-}
-
-pre {
-  font-family: monospace;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-em {
-  text-transform:uppercase;
-  font-weight: bold;
-}
-
-table {
-   margin-left: auto;
-   margin-right: auto;
-}
-
-header {
-    width: 270px;
-    float: left;
-    position: fixed;
-  }
-
-section {
-    width: 500px;
-    float: right;
-    padding-bottom:50px;
-}
-
-footer {
-    width: 270px;
-    float: left;
-    position: fixed;
-    bottom: 50px;
-    -webkit-font-smoothing:subpixel-antialiased
+  margin: 0;
+  padding: 3rem 1rem 4rem;
 }
 
 .wrapper {
-  width: 860px;
-  margin:0 auto
+  max-width: var(--measure);
+  margin: 0 auto;
 }
 
-a { text-decoration: none; } /* hyoerkinks without underline*/
+/* ---------- Type ---------- */
 
-:link { color: #267CB9;; }  /* for unvisited links */
-
-:visited { color: #267CB9; } /* for visited links */
-
-a:hover { color: #069; } /* when mouse is over link */
-
-@media print, screen and (max-width: 960px) {
-    div.wrapper {
-        width: auto;
-        margin:0
-    }
-
-    header, section, footer {
-        float: none;
-        position: static;
-        width:auto
-    }
-
-    header {
-        padding-right:320px
-    }
-
-    section {
-        border: 1px solid #e5e5e5;
-        border-width: 1px 0;
-        padding: 20px 0;
-        margin:0 0 20px
-    }
-
-    header a small {
-        display:inline
-    }
-
-    header ul {
-        position: absolute;
-        right: 50px;
-        top:52px
-    }
+h1, h2, h3 {
+  font-stretch: 72%;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
 }
 
-@media print, screen and (max-width: 720px) {
-    body {
-        word-wrap:break-word
-    }
-
-    header {
-        padding:0
-    }
-
-    header ul, header p.view {
-        position:static
-    }
-
-    pre, code {
-        word-wrap:normal
-    }
+h1 {
+  font-size: clamp(2.6rem, 9vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
-@media print, screen and (max-width: 480px) {
-    body {
-        padding:15px
-    }
+h1 a { color: inherit; }
 
-    .downloads {
-        width:99%
-    }
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 2.75rem 0 0.75rem;
+}
 
-    .downloads li, .downloads li + li + li {
-        width:33%
-    }
+h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.4rem;
+}
+
+p, ul, ol, dl, table { margin: 0 0 1rem; }
+
+ul, ol { padding-left: 1.25rem; }
+
+li { margin-bottom: 0.25rem; }
+
+a {
+  color: var(--pen-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--pen-blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Page header ---------- */
+
+header { margin-bottom: 1.5rem; }
+
+.intro {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin: 0.75rem 0 0;
+}
+
+/* Small text buttons: language toggle and route picker */
+.lang-toggle,
+.route-buttons {
+  color: var(--ink-soft);
+}
+
+.lang-toggle {
+  text-align: right;
+  margin: 0 0 1.5rem;
+  font-size: 0.9rem;
+}
+
+.lang-toggle button,
+.route-buttons button {
+  background: none;
+  border: none;
+  padding: 0.1rem 0.15rem;
+  font: inherit;
+  color: var(--pen-blue);
+  cursor: pointer;
+}
+
+:root[lang="en"] .lang-toggle button[data-lang="en"],
+:root[lang="pt"] .lang-toggle button[data-lang="pt"],
+.route-buttons button.active {
+  color: var(--ink);
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Bilingual content: only the active language (set on <html lang>) is shown */
+:root[lang="pt"] [lang="en"],
+:root[lang="en"] [lang="pt"] { display: none; }
+
+/* ---------- The performance curve ---------- */
+
+.curve {
+  margin: 0 0 2rem;
+}
+
+.curve svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.curve .grid-minor,
+.curve .grid-major,
+.curve .axis,
+.curve .bep-line { fill: none; }
+
+.curve .grid-minor { stroke: var(--grid); stroke-width: 0.5; }
+.curve .grid-major { stroke: var(--grid-major); stroke-width: 0.8; }
+.curve .axis { stroke: var(--ink-soft); stroke-width: 1; }
+.curve .tick { fill: var(--ink-soft); font-size: 11px; }
+.curve .axis-label { fill: var(--ink); font-size: 12px; font-weight: 600; }
+
+.curve .head,
+.curve .efficiency {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curve .head { stroke: var(--pen-blue); }
+.curve .efficiency { stroke: var(--pen-red); }
+.curve .head-label { fill: var(--pen-blue); font-size: 13px; font-weight: 600; }
+.curve .efficiency-label { fill: var(--pen-red); font-size: 13px; font-weight: 600; }
+
+.curve .bep-line { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 3 3; }
+.curve .bep-dot { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
+.curve .bep-label { fill: var(--ink); font-size: 14px; font-weight: 800; font-stretch: 72%; }
+
+.curve figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-top: 0.5rem;
+  max-width: 38rem;
+}
+
+/* The one moment of motion: the pen draws both curves, then the BEP appears. */
+@media (prefers-reduced-motion: no-preference) {
+  .curve .head,
+  .curve .efficiency {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 1.6s cubic-bezier(.4, 0, .2, 1) forwards;
+  }
+
+  .curve .efficiency { animation-delay: 0.35s; }
+
+  .curve .bep {
+    opacity: 0;
+    animation: appear 0.4s ease-out 1.8s forwards;
+  }
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { to { opacity: 1; } }
+
+/* ---------- Projects ---------- */
+
+.projects { margin: 0; }
+
+.projects dt {
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-stretch: 85%;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.75rem;
+}
+
+.projects dd {
+  margin: 0.2rem 0 1.25rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+footer p { margin: 0 0 0.25rem; }
+
+/* ---------- Trip plan page (franca-2027.html) ---------- */
+
+.site-link {
+  font-weight: 700;
+  font-stretch: 72%;
+  font-size: 1.15rem;
+  margin: 0 0 1.5rem;
+}
+
+.site-link a { text-decoration: none; }
+
+.card {
+  border-left: 3px solid var(--pen-blue);
+  padding: 0.25rem 0 0.25rem 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.card h3 { margin-top: 0; }
+.card p { margin-bottom: 0.5rem; }
+.card p:last-child { margin-bottom: 0; }
+
+.map {
+  width: 100%;
+  height: 420px;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--rule);
+}
+
+.map-small { height: 320px; }
+
+.map-note { font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Numbered day pins on the detail maps */
+.pin {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font: 700 12px/20px "Archivo", Arial, sans-serif;
+  text-align: center;
+}
+
+.pin-logistics {
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+  background: #22303a;
+}
+
+.route-buttons { margin-bottom: 0.75rem; }
+
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.plan-table th,
+.plan-table td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.45rem 0.6rem 0.45rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.plan-table th { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 30rem) {
+  html { font-size: 100%; }
+  body { padding-top: 1.5rem; }
+  .plan-table { font-size: 0.85rem; }
 }
 
 @media print {
-    body {
-        padding: 0.4in;
-        font-size: 12pt;
-        color: #444
-    }
+  body { padding: 0; }
+  .lang-toggle, .route-buttons { display: none; }
 }
