@@ -208,21 +208,49 @@ header { margin-bottom: 1.5rem; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes appear { to { opacity: 1; } }
 
-/* ---------- Projects ---------- */
+/* Operating point that follows the pointer */
+.curve svg { touch-action: pan-y; }
+.curve svg:focus-visible { outline-offset: 4px; }
+.curve .op-line { fill: none; stroke: var(--ink); stroke-width: 1; opacity: 0.5; }
+.curve .op-dot { fill: var(--ink); }
 
-.projects { margin: 0; }
-
-.projects dt {
-  font-size: 1.15rem;
-  font-weight: 700;
-  font-stretch: 85%;
-  border-top: 1px solid var(--rule);
-  padding-top: 0.75rem;
+.curve .readout {
+  margin: 0.4rem 0 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.projects dd {
-  margin: 0.2rem 0 1.25rem;
+/* ---------- Projects: a spec-sheet list ---------- */
+
+.project {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 0 1.5rem;
+  border-top: 1px solid var(--rule);
+  padding: 1rem 0 0.5rem;
+}
+
+.project h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-stretch: 72%;
+  overflow-wrap: anywhere;
+}
+
+.project .field {
+  margin: 0.15rem 0 0.75rem;
   color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.project-body p { margin-bottom: 0.6rem; }
+
+.project-links a { margin-right: 1.25rem; font-weight: 600; }
+
+@media (max-width: 40rem) {
+  .project { grid-template-columns: 1fr; }
+  .project .field { margin-bottom: 0.4rem; }
 }
 
 /* ---------- Footer ---------- */

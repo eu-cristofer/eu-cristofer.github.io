@@ -41,7 +41,7 @@
 			</header>
 
 			<figure class="curve">
-				<svg viewBox="0 0 660 290" role="img" aria-labelledby="curve-title">
+				<svg viewBox="0 0 660 290" role="img" aria-labelledby="curve-title" tabindex="0">
 					<title id="curve-title">Centrifugal pump performance curve: head falls and efficiency peaks at the best efficiency point (BEP) as flow increases.</title>
 					<defs>
 						<pattern id="mm" x="56" y="24" width="37.333" height="37.333" patternUnits="userSpaceOnUse">
@@ -92,7 +92,15 @@
 						<circle class="bep-dot" cx="382.7" cy="57.6" r="4.5"/>
 						<text class="bep-label" x="390" y="44">BEP</text>
 					</g>
+
+					<!-- operating point that follows the pointer / arrow keys -->
+					<g class="op" visibility="hidden">
+						<path class="op-line" d="M0 248V24"/>
+						<circle class="op-dot op-head" r="4"/>
+						<circle class="op-dot op-eff" r="4"/>
+					</g>
 				</svg>
+				<p class="readout" aria-live="polite"></p>
 				<figcaption>
 					<span lang="en">A centrifugal pump curve: head (blue) and efficiency (red) against flow.
 						Most of my work is making sure a pump really runs near its best efficiency point.</span>
@@ -113,14 +121,62 @@
 			</p>
 
 			<h2 id="projects"><span lang="en">Projects</span><span lang="pt">Projetos</span></h2>
-			<!-- One dt/dd pair per project: copy it to add another. -->
-			<dl class="projects">
-				<dt><a href="https://github.com/eu-cristofer/claude-config">claude-config</a></dt>
-				<dd>
-					<span lang="en">My Claude Code setup: skills, commands and agents, versioned and public.</span>
-					<span lang="pt">Minha configuração do Claude Code: skills, comandos e agentes, versionada e pública.</span>
-				</dd>
-			</dl>
+			<!-- One .project block per project: copy it to add another. -->
+			<div class="projects">
+				<div class="project">
+					<div class="project-name">
+						<h3>rotordynamics_UFU</h3>
+						<p class="field"><span lang="en">Rotordynamics</span><span lang="pt">Dinâmica de rotores</span></p>
+					</div>
+					<div class="project-body">
+						<p>
+							<span lang="en">Rotor models from my master's studies: isotropic and anisotropic rotors, an
+								overhung rotor and a tapered shaft, worked through in notebooks and a small Python package.</span>
+							<span lang="pt">Modelos de rotores do meu mestrado: rotores isotrópicos e anisotrópicos, rotor em
+								balanço e eixo cônico, resolvidos em notebooks e num pequeno pacote Python.</span>
+						</p>
+						<p class="project-links">
+							<a href="https://eu-cristofer.github.io/rotordynamics_UFU/"><span lang="en">Live presentation</span><span lang="pt">Apresentação</span></a>
+							<a href="https://github.com/eu-cristofer/rotordynamics_UFU"><span lang="en">Code</span><span lang="pt">Código</span></a>
+						</p>
+					</div>
+				</div>
+
+				<div class="project">
+					<div class="project-name">
+						<h3>geo</h3>
+						<p class="field"><span lang="en">Historical mapping</span><span lang="pt">Mapeamento histórico</span></p>
+					</div>
+					<div class="project-body">
+						<p>
+							<span lang="en">An interactive map of the appeals filed during the Estado Novo against
+								expropriations for the construction of Avenida Presidente Vargas, in Rio de Janeiro.</span>
+							<span lang="pt">Mapa interativo dos apelos feitos durante o Estado Novo contra as
+								desapropriações para a construção da Avenida Presidente Vargas, no Rio de Janeiro.</span>
+						</p>
+						<p class="project-links">
+							<a href="https://eu-cristofer.github.io/geo/"><span lang="en">Open the map</span><span lang="pt">Abrir o mapa</span></a>
+							<a href="https://github.com/eu-cristofer/geo"><span lang="en">Code</span><span lang="pt">Código</span></a>
+						</p>
+					</div>
+				</div>
+
+				<div class="project">
+					<div class="project-name">
+						<h3>claude-config</h3>
+						<p class="field"><span lang="en">Developer tooling</span><span lang="pt">Ferramentas de desenvolvimento</span></p>
+					</div>
+					<div class="project-body">
+						<p>
+							<span lang="en">My Claude Code setup: skills, commands and agents, versioned and public.</span>
+							<span lang="pt">Minha configuração do Claude Code: skills, comandos e agentes, versionada e pública.</span>
+						</p>
+						<p class="project-links">
+							<a href="https://github.com/eu-cristofer/claude-config"><span lang="en">Code</span><span lang="pt">Código</span></a>
+						</p>
+					</div>
+				</div>
+			</div>
 
 			<footer>
 				<p><a href="mailto:cristofercosta@yahoo.com.br">cristofercosta@yahoo.com.br</a></p>
@@ -136,6 +192,51 @@
 					try { localStorage.setItem("lang", lang); } catch (e) {}
 				});
 			});
+
+			// Operating point readout: same curves as the plotted paths.
+			(function () {
+				var svg = document.querySelector(".curve svg");
+				var op = svg.querySelector(".op");
+				var line = op.querySelector(".op-line");
+				var dotH = op.querySelector(".op-head");
+				var dotE = op.querySelector(".op-eff");
+				var readout = document.querySelector(".curve .readout");
+				var X0 = 56, X1 = 616, Y0 = 248, Y1 = 24, BEP = 70;
+				var head = function (q) { return 100 - 0.0045 * q * q; };
+				var eff = function (q) { return 85 * (q / 70) * (2 - q / 70); };
+				var qx = function (q) { return X0 + (X1 - X0) * q / 120; };
+				var hy = function (h) { return Y0 - (Y0 - Y1) * h / 120; };
+				var ey = function (e) { return Y0 - (Y0 - Y1) * e / 100; };
+				var q = BEP;
+
+				function show(newQ, visible) {
+					q = Math.max(0, Math.min(120, newQ));
+					var x = qx(q);
+					line.setAttribute("d", "M" + x + " 248V24");
+					dotH.setAttribute("cx", x); dotH.setAttribute("cy", hy(head(q)));
+					dotE.setAttribute("cx", x); dotE.setAttribute("cy", ey(eff(q)));
+					op.setAttribute("visibility", visible ? "visible" : "hidden");
+					readout.textContent = (q === BEP && !visible ? "BEP: " : "") +
+						"Q " + Math.round(q) + " m³/h, H " + Math.round(head(q)) + " m, η " + Math.round(eff(q)) + " %";
+				}
+
+				svg.addEventListener("pointermove", function (e) {
+					var p = svg.createSVGPoint();
+					p.x = e.clientX; p.y = e.clientY;
+					var local = p.matrixTransform(svg.getScreenCTM().inverse());
+					if (local.x < X0 || local.x > X1) return;
+					show((local.x - X0) / (X1 - X0) * 120, true);
+				});
+				svg.addEventListener("pointerleave", function () { show(BEP, false); });
+				svg.addEventListener("keydown", function (e) {
+					if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+						e.preventDefault();
+						show(Math.round(q) + (e.key === "ArrowRight" ? 2 : -2), true);
+					}
+				});
+				svg.addEventListener("blur", function () { show(BEP, false); });
+				show(BEP, false);
+			})();
 		</script>
 	</body>
 </html>
